@@ -1,71 +1,36 @@
-# AgentForge - Core Agentique
+# AgentForge
 
-Tu es dans un environnement AgentForge. Ton role est de generer des configurations Claude Code adaptees au projet de l'utilisateur.
+Generateur de configurations Claude Code.
 
-## Commandes Disponibles
+## Commande principale
 
-| Commande | Description |
-|----------|-------------|
-| `/forge-init` | Lance le questionnaire et genere la configuration complete |
-| `/forge-agent {nom}` | Cree un nouvel agent specifique |
-| `/forge-command {nom}` | Cree une nouvelle commande |
-| `/forge-explain` | Explique la configuration generee |
+`/forge-init` - Lance le processus de generation
 
-## Agents Disponibles
+## Comment ca marche
 
-| Agent | Role |
-|-------|------|
-| `forge-orchestrator` | Gere le questionnaire et orchestre la generation |
-| `forge-generator` | Genere les fichiers de configuration |
+1. Tu lances `/forge-init`
+2. Je te pose des questions sur ton projet
+3. Je genere une config complete dans `forged/{date}-{slug}/.claude/`
+4. Tu copies ce dossier dans ton projet
 
-## Workflow Principal
-
-1. L'utilisateur lance `/forge-init`
-2. `forge-orchestrator` pose les questions (mode Express, Light ou Deep)
-3. `forge-generator` cree les fichiers dans `.claude/`
-4. L'utilisateur peut affiner avec `/forge-agent` ou `/forge-command`
-
-## Modes de Questionnaire
-
-| Mode | Questions | Duree | Usage |
-|------|-----------|-------|-------|
-| **Express** | 3 | 1-2 min | Setup rapide, config standard |
-| **Light** | 5-10 | 5 min | Personnalisation basique |
-| **Deep** | 20-30 | 15-20 min | Configuration complete et detaillee |
-
-## Regles Critiques
-
-1. **Ne jamais ecraser** une configuration existante sans confirmation
-2. **Toujours expliquer** ce qui va etre genere avant de le faire
-3. **Model routing intelligent**: Opus pour critique, Sonnet pour operationnel, Haiku pour trivial
-4. **Anti-hallucination**: Ne pas inventer de features Claude Code inexistantes
-
-## Structure Generee
+## Structure des outputs
 
 ```
-.claude/
-├── CLAUDE.md              # Instructions principales
-├── config.yaml            # Model routing (optionnel)
-├── settings.json          # Permissions
-├── agents/
-│   └── {generated}.md     # Agents specifiques au projet
-├── commands/
-│   └── {generated}.md     # Commandes projet
-├── skills/
-│   └── {skill}/SKILL.md   # Skills (optionnel)
-└── rules/
-    └── {domain}.md        # Regles specifiques
+forged/
+├── 2025-01-13-mon-saas/
+│   └── .claude/
+│       ├── CLAUDE.md
+│       ├── agents/
+│       ├── commands/
+│       └── rules/
+├── 2025-01-14-cli-tool/
+│   └── .claude/
+│       └── ...
 ```
 
-## Templates Disponibles
+## Regles de generation
 
-| Template | Description | Agents generes |
-|----------|-------------|----------------|
-| **saas** | Application SaaS web | reviewer, test-runner, deploy |
-| **cli** | Outil en ligne de commande | cli-architect, docs-writer |
-| **lib** | Bibliotheque npm/package | api-designer, test-runner |
-| **general** | Configuration minimale | reviewer |
-
-## Contexte Utilisateur
-
-L'utilisateur est un developpeur experimente qui utilise Claude Code quotidiennement. Les estimations de temps traditionnelles sont obsoletes - un MVP prend 1-2 jours, pas 2-3 mois.
+1. **Contenu intelligent** - Chaque fichier est genere specifiquement pour le projet, pas des templates copie-colle
+2. **Model routing** - Opus pour les decisions critiques, Sonnet pour l'execution, Haiku pour le trivial
+3. **Descriptions riches** - Les agents ont des descriptions detaillees pour le routing automatique
+4. **Minimalisme** - Ne genere que ce qui est necessaire, pas de bloat
