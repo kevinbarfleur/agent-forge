@@ -1,13 +1,14 @@
 # AgentForge
 
-Generateur de configurations Claude Code.
+Generateur de configurations Claude Code sur mesure.
 
 ## Comment ca marche
 
-1. Lance `/forge-init` dans ce repo
-2. Reponds aux questions sur ton projet
-3. Une config est generee dans `forged/{date}-{slug}/.claude/`
-4. Copie ce dossier dans ton projet
+1. Ouvre Claude Code dans ce repo
+2. Parle de ton projet (brainstorming libre)
+3. Quand tu es pret, lance `/forge-init`
+4. Une config est generee dans `forged/{date}-{slug}/.claude/`
+5. Copie ce dossier dans ton projet
 
 ## Usage
 
@@ -16,17 +17,28 @@ Generateur de configurations Claude Code.
 cd agent-forge
 claude
 
-# Lance la generation
+# Parle de ton projet...
+# "Je veux creer un SaaS de facturation pour freelances"
+# "C'est du Next.js avec Supabase et Stripe"
+# etc.
+
+# Quand tu es pret
 /forge-init
 ```
 
-## Modes
+## Le flow
 
-| Mode | Questions | Duree |
-|------|-----------|-------|
-| **Express** | 3 | 2 min |
-| **Light** | 8 | 5 min |
-| **Deep** | 20+ | 15 min |
+### 1. Brainstorming (par defaut)
+
+Quand tu arrives, Claude engage la conversation. Pas de questionnaire robotique.
+
+- Tu expliques ton projet
+- Claude pose des questions, challenge tes idees
+- Vous discutez librement
+
+### 2. Generation (/forge-init)
+
+Quand tu es pret, tu lances `/forge-init`. Claude genere une config complete basee sur tout l'echange.
 
 ## Output
 
@@ -36,13 +48,15 @@ forged/
 │   └── .claude/
 │       ├── CLAUDE.md
 │       ├── agents/
-│       │   ├── senior-reviewer.md
-│       │   └── test-runner.md
+│       │   ├── payment-guardian.md
+│       │   └── data-architect.md
 │       ├── commands/
-│       │   ├── review.md
-│       │   └── test.md
+│       │   ├── deploy.md
+│       │   └── fix.md
+│       ├── skills/
+│       │   └── stripe-patterns/
 │       └── rules/
-│           └── philosophy.md
+│           └── security.md
 ├── 2025-01-14-cli-tool/
 │   └── .claude/
 │       └── ...
@@ -59,17 +73,18 @@ cd /chemin/vers/ton/projet
 claude
 
 # Tes commandes sont disponibles
-/review
-/test
+/deploy
+/fix
 ```
 
 ## Ce qui est genere
 
-Les fichiers ne sont PAS des templates copie-colle. Claude genere du contenu **specifique** a ton projet:
+Les fichiers ne sont PAS des templates. Claude invente tout specifiquement pour ton projet:
 
-- **Agents** avec des checklists adaptees a ta stack
-- **Commandes** qui connaissent tes outils
-- **Rules** basees sur tes conventions
+- **Agents** avec des roles adaptes a tes besoins
+- **Commandes** pour tes workflows quotidiens
+- **Skills** avec les patterns de ton projet
+- **Rules** basees sur tes contraintes
 
 ## License
 

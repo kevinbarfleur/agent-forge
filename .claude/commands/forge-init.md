@@ -12,7 +12,21 @@ Chaque configuration que tu generes est **unique**. Les noms, les roles, le nomb
 
 ---
 
-## ETAPE 1: Comprendre le projet
+## ETAPE 1: Evaluer le contexte
+
+### Si vous avez deja discute du projet (brainstorming prealable)
+
+Utilise tout ce que tu as appris pendant la conversation. Pas besoin de reposer les questions.
+
+Verifie juste si tu as les infos essentielles:
+- Type de projet
+- Stack/outils (si pertinent)
+- Workflows quotidiens
+- Problemes a resoudre
+
+Si quelque chose manque, demande uniquement ce qui manque.
+
+### Si c'est un lancement direct (pas de discussion prealable)
 
 Pose des questions pour comprendre:
 
@@ -24,8 +38,6 @@ Pose des questions pour comprendre:
 6. **Des contraintes particulieres?**
 
 Adapte tes questions au contexte. Si c'est un projet de dev, demande la stack. Si c'est autre chose, pose les questions pertinentes.
-
-Tu peux poser plus ou moins de questions selon le mode choisi (Express/Light/Deep).
 
 ---
 
