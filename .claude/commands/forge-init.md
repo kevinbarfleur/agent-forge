@@ -1,410 +1,298 @@
 # /forge-init
 
-Genere une configuration Claude Code complete pour un projet.
-
-## IMPORTANT - Lis tout avant d'agir
-
-Cette commande te guide pour generer une config `.claude/` adaptee au projet de l'utilisateur.
-Le resultat sera sauvegarde dans `forged/{YYYY-MM-DD}-{slug}/.claude/`.
+Genere une configuration Claude Code sur mesure pour le projet de l'utilisateur.
 
 ---
 
-## ETAPE 1: Choix du mode
+## TON ROLE
 
-Demande a l'utilisateur quel mode il veut:
+Tu es un **forgeron** qui cree des outils sur mesure. Tu ne pioches pas dans un catalogue - tu **inventes** les agents, commandes et skills adaptes au projet.
+
+Chaque configuration que tu generes est **unique**. Les noms, les roles, le nombre d'agents - tout depend du contexte et des besoins de l'utilisateur.
+
+---
+
+## ETAPE 1: Comprendre le projet
+
+Pose des questions pour comprendre:
+
+1. **Quel type de projet?** (laisse l'utilisateur decrire librement)
+2. **Quels outils/technos?** (si applicable)
+3. **Quels sont les workflows quotidiens?**
+4. **Quels problemes veux-tu resoudre avec Claude?**
+5. **Solo ou equipe?**
+6. **Des contraintes particulieres?**
+
+Adapte tes questions au contexte. Si c'est un projet de dev, demande la stack. Si c'est autre chose, pose les questions pertinentes.
+
+Tu peux poser plus ou moins de questions selon le mode choisi (Express/Light/Deep).
+
+---
+
+## ETAPE 2: Concevoir la configuration
+
+Apres avoir compris le projet, **reflechis** a ce dont l'utilisateur a besoin.
+
+### Questions a te poser:
+
+**Pour les agents:**
+- Quelles sont les taches repetitives que l'utilisateur fait?
+- Quels experts seraient utiles pour ce projet?
+- Quels problemes specifiques necessitent une attention specialisee?
+- Quel niveau de detail/specialisation est necessaire?
+
+**Pour les commandes:**
+- Quelles actions l'utilisateur va faire quotidiennement?
+- Quels raccourcis lui feraient gagner du temps?
+- Quelles taches complexes peuvent etre simplifiees?
+
+**Pour les skills:**
+- Quelles connaissances contextuelles seraient utiles?
+- Quels patterns/references l'utilisateur a besoin d'avoir sous la main?
+
+### Principes:
+
+- **Pas de minimum, pas de maximum** - genere ce qui est necessaire, ni plus ni moins
+- **Noms explicites** - les noms doivent refleter le role exact dans CE projet
+- **Specialisation** - mieux vaut plusieurs agents specialises qu'un agent generique
+- **Contexte** - chaque fichier genere doit etre specifique au projet, pas generique
+
+---
+
+## ETAPE 3: Proposer et confirmer
+
+Presente ta proposition:
 
 ```
-Quel mode de configuration?
+## Configuration proposee pour {projet}
 
-1. Express (2 min) - 3 questions, config solide
-2. Light (5 min) - 8 questions, plus de personnalisation
-3. Deep (15 min) - 20+ questions, configuration complete
-```
-
----
-
-## ETAPE 2: Questions selon le mode
-
-### MODE EXPRESS (3 questions)
-
-**Q1: Type de projet**
-```
-1. SaaS / Web App (frontend + backend)
-2. CLI Tool
-3. Library / Package
-4. API / Backend only
-5. Mobile App
-```
-
-**Q2: Stack principale**
-```
-1. TypeScript / Node.js
-2. Python
-3. Go
-4. Rust
-5. Autre
-```
-
-**Q3: Nom du projet**
-
-### MODE LIGHT (8 questions)
-
-Questions Express + Q4-Q8: Framework, DB, ORM, Tests, Solo/Equipe
-
-### MODE DEEP (20+ questions)
-
-Questions Light + Q9-Q20: Integrations, Deploy, CI/CD, Git workflow, Review level, Docs, Conventions, Vertical, Contraintes, Marketing
-
----
-
-## ETAPE 3: Selection des composants
-
-Selon les reponses, selectionne dans le CATALOGUE ci-dessous ce qui doit etre genere.
-
-**REGLE**: Pour un SaaS avec paiements/auth, genere MINIMUM 8-12 agents, 10-15 commandes, et 3-5 skills.
-
----
-
-## CATALOGUE DES AGENTS
-
-### Core (TOUJOURS generer)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `project-architect` | Decisions d'architecture, structure du projet, refactoring majeur | opus | TOUJOURS |
-| `senior-reviewer` | Code review, qualite, best practices | opus | TOUJOURS |
-| `test-runner` | Execute tests, analyse echecs, suggere fixes | sonnet | Si tests demandes |
-
-### Dev Quotidien (TOUJOURS pour SaaS/Web)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `bug-hunter` | Analyse bugs, trouve la cause, propose fix | sonnet | TOUJOURS |
-| `refactor-expert` | Refactoring propre, garde la retro-compatibilite | sonnet | TOUJOURS |
-| `perf-analyzer` | Analyse performance, identifie bottlenecks | sonnet | TOUJOURS |
-
-### Frontend (si applicable)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `frontend-expert` | Patterns framework (Next/Nuxt/Svelte), composants, state | sonnet | Si frontend |
-| `ui-stylist` | CSS, styling, responsive, animations | sonnet | Si frontend |
-| `a11y-checker` | Accessibilite, ARIA, contraste, navigation clavier | haiku | Si frontend |
-
-### Backend / DB (si applicable)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `db-expert` | Queries, indexes, migrations, performance DB | sonnet | Si DB |
-| `api-designer` | Design API REST/GraphQL, versioning, documentation | sonnet | Si API |
-
-### Integrations (selon reponses)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `supabase-expert` | RLS, Auth, Realtime, Edge Functions, migrations | sonnet | Si Supabase |
-| `prisma-expert` | Schema, migrations, queries optimisees | sonnet | Si Prisma |
-| `payment-expert` | Stripe/Lemon, webhooks, subscriptions, checkout | sonnet | Si paiements |
-| `auth-expert` | Auth flows, sessions, tokens, OAuth, securite auth | sonnet | Si auth complexe |
-| `email-expert` | Templates, deliverabilite, transactional vs marketing | haiku | Si email |
-| `storage-expert` | Upload, CDN, optimisation images, presigned URLs | haiku | Si storage |
-
-### Securite / Conformite (selon reponses)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `security-expert` | Vulnerabilites, audit, OWASP, secrets management | opus | Si auth/paiements/sensible |
-| `rgpd-expert` | Conformite RGPD, consentement, data retention, DPO | sonnet | Si RGPD |
-| `pci-expert` | Conformite PCI-DSS pour paiements | sonnet | Si PCI |
-
-### Marketing / Launch (si demande)
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `landing-optimizer` | Copywriting, CTA, conversion, hero section | sonnet | Si marketing |
-| `seo-expert` | Meta tags, structured data, sitemap, performance | sonnet | Si marketing |
-| `launch-strategist` | Planning launch, ProductHunt, Twitter, outreach | sonnet | Si marketing |
-
-### Documentation
-
-| Agent | Role | Model | Quand |
-|-------|------|-------|-------|
-| `docs-writer` | README, API docs, guides, changelog | sonnet | Si docs demandees |
-| `comment-writer` | JSDoc, docstrings, comments inline | haiku | Si docs demandees |
-
----
-
-## CATALOGUE DES COMMANDES
-
-### Core (TOUJOURS)
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/review` | Code review complet | TOUJOURS |
-| `/review {path}` | Review fichier/dossier specifique | TOUJOURS |
-
-### Dev Quotidien (TOUJOURS pour SaaS/Web)
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/fix {description}` | Analyse et corrige un bug | TOUJOURS |
-| `/hotfix` | Fix urgent, minimal, rapide | TOUJOURS |
-| `/refactor {path}` | Refactoring d'un fichier/module | TOUJOURS |
-| `/perf` | Analyse performance globale | TOUJOURS |
-| `/perf {path}` | Analyse performance d'un fichier | TOUJOURS |
-
-### UI/Styling (si frontend)
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/style {description}` | Fix probleme UI/CSS | Si frontend |
-| `/responsive` | Verifie le responsive design | Si frontend |
-| `/a11y` | Audit accessibilite | Si frontend |
-
-### Tests
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/test` | Lance tous les tests | Si tests |
-| `/test {path}` | Tests d'un fichier/dossier | Si tests |
-| `/test --coverage` | Tests avec coverage | Si tests |
-| `/test --watch` | Tests en watch mode | Si tests |
-
-### DB
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/db-check` | Verifie schema, indexes, migrations | Si DB |
-| `/migrate` | Cree une migration | Si DB |
-
-### Deploy / Ops
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/deploy` | Checklist pre-deploy | TOUJOURS |
-| `/deploy --dry` | Simule le deploy | TOUJOURS |
-| `/env-check` | Verifie les env vars | TOUJOURS |
-
-### Git / Workflow
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/commit` | Commit avec message genere | TOUJOURS |
-| `/pr` | Cree une PR avec description | Si feature branches |
-| `/changelog` | Genere changelog depuis commits | Si docs |
-
-### Securite
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/security` | Audit securite complet | Si auth/paiements |
-| `/secrets` | Verifie les secrets exposes | TOUJOURS |
-
-### Documentation
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/docs` | Genere/update la documentation | Si docs |
-| `/readme` | Update le README | Si docs |
-
-### Marketing (si demande)
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/landing` | Optimise la landing page | Si marketing |
-| `/seo` | Audit SEO | Si marketing |
-| `/copy {section}` | Genere du copywriting | Si marketing |
-
-### Integration specifiques
-
-| Commande | Description | Quand |
-|----------|-------------|-------|
-| `/stripe` | Debug integration Stripe | Si Stripe |
-| `/lemon` | Debug integration LemonSqueezy | Si LemonSqueezy |
-| `/supabase` | Debug queries/RLS Supabase | Si Supabase |
-| `/email-preview` | Preview des emails | Si email |
-
----
-
-## CATALOGUE DES SKILLS
-
-Les skills fournissent du contexte reutilisable que les agents peuvent charger.
-
-### Framework Skills (selon stack)
-
-| Skill | Contenu | Quand |
-|-------|---------|-------|
-| `nextjs/` | App Router, Server Components, Server Actions, Metadata | Si Next.js |
-| `nuxt/` | Auto-imports, composables, server routes, Nitro | Si Nuxt |
-| `sveltekit/` | Load functions, actions, hooks | Si SvelteKit |
-| `vue/` | Composition API, reactivity, composables | Si Vue/Nuxt |
-| `react/` | Hooks, patterns, state management | Si React/Next |
-
-### Integration Skills (selon integrations)
-
-| Skill | Contenu | Quand |
-|-------|---------|-------|
-| `supabase/` | Client setup, RLS policies, Auth patterns, Realtime | Si Supabase |
-| `prisma/` | Schema patterns, migrations, query optimization | Si Prisma |
-| `stripe/` | Checkout, webhooks, subscriptions, Customer Portal | Si Stripe |
-| `lemonsqueezy/` | Checkout, webhooks, license keys, variants | Si LemonSqueezy |
-| `resend/` | Templates, React Email, deliverability | Si Resend |
-
-### Domain Skills (selon domaine)
-
-| Skill | Contenu | Quand |
-|-------|---------|-------|
-| `auth/` | Auth patterns, sessions, tokens, refresh, OAuth | Si auth complexe |
-| `payments/` | Payment flows, webhooks, refunds, invoices | Si paiements |
-| `ecommerce/` | Cart, checkout, inventory, orders | Si e-commerce |
-
-### Conformite Skills (selon contraintes)
-
-| Skill | Contenu | Quand |
-|-------|---------|-------|
-| `rgpd/` | Consentement, cookies, data retention, droits utilisateurs | Si RGPD |
-| `security/` | OWASP Top 10, headers, CSP, sanitization | Si securite critique |
-
----
-
-## ETAPE 4: Synthese et confirmation
-
-Affiche un resume COMPLET de ce qui va etre genere:
-
-```markdown
-## Configuration a generer
-
-**Projet**: {nom}
-**Type**: {type}
-**Stack**: {stack complet}
-**Integrations**: {liste}
-
-### Agents ({nombre} agents)
+### Agents ({nombre})
 
 | Agent | Role | Model |
 |-------|------|-------|
+| {nom-que-tu-as-choisi} | {role specifique} | {opus/sonnet/haiku} |
 | ... | ... | ... |
 
-### Commandes ({nombre} commandes)
+### Commandes ({nombre})
 
 | Commande | Description |
 |----------|-------------|
+| /{nom} | {ce que ca fait} |
 | ... | ... |
 
-### Skills ({nombre} skills)
+### Skills ({nombre})
 
-| Skill | Description |
-|-------|-------------|
+| Skill | Contenu |
+|-------|---------|
+| {nom}/ | {ce que ca contient} |
 | ... | ... |
 
 ### Rules
 
-- philosophy.md
-- {autres rules}
+- {liste des fichiers de regles}
 
 ---
 
 Output: forged/{date}-{slug}/.claude/
 
-Generer? [O/n]
+Cette configuration te convient? Tu veux ajouter/modifier quelque chose?
 ```
+
+Attends la validation ou les modifications demandees.
 
 ---
 
-## ETAPE 5: Generation
+## ETAPE 4: Generer les fichiers
 
-### Structure a generer
+### Structure
 
 ```
 forged/{YYYY-MM-DD}-{slug}/
 └── .claude/
     ├── CLAUDE.md
     ├── agents/
-    │   ├── project-architect.md
-    │   ├── senior-reviewer.md
-    │   ├── bug-hunter.md
-    │   ├── {frontend-expert}.md
-    │   ├── {supabase-expert}.md
-    │   ├── {payment-expert}.md
-    │   ├── {security-expert}.md
-    │   └── ...
+    │   └── {tes-agents}.md
     ├── commands/
-    │   ├── review.md
-    │   ├── fix.md
-    │   ├── hotfix.md
-    │   ├── refactor.md
-    │   ├── test.md
-    │   ├── deploy.md
-    │   └── ...
+    │   └── {tes-commandes}.md
     ├── skills/
-    │   ├── nuxt/
-    │   │   └── SKILL.md
-    │   ├── supabase/
-    │   │   └── SKILL.md
-    │   └── ...
+    │   └── {tes-skills}/
+    │       └── SKILL.md
     └── rules/
-        ├── philosophy.md
-        └── ...
+        └── {tes-rules}.md
 ```
 
-### Generation CLAUDE.md
+### Format des agents
 
-Le CLAUDE.md doit:
-- Lister TOUTES les commandes disponibles
-- Lister TOUS les agents avec leur role
-- Lister TOUTES les skills
-- Expliquer la stack
-- Definir les conventions
+```markdown
+---
+name: {nom-descriptif}
+description: {DESCRIPTION RICHE de 50-100 mots qui explique precisement quand appeler cet agent, ce qu'il fait, et dans quel contexte. Cette description est CRITIQUE pour le routing automatique.}
+model: {opus|sonnet|haiku}
+tools:
+  - {liste des outils necessaires}
+---
 
-### Generation des Agents
+# {Nom de l'Agent}
 
-Chaque agent DOIT avoir:
-- **YAML frontmatter** avec name, description (50-100 mots), model, tools
-- **Contexte technique** specifique au projet
-- **Checklist** ou workflow detaille
-- **Format de sortie** explicite
+{Introduction: qui est cet agent, quel est son role dans ce projet specifique}
 
-### Generation des Commandes
+## Contexte
 
-Chaque commande DOIT avoir:
-- **Usage** avec variantes
-- **Workflow** etape par etape
-- **Agent(s)** a utiliser si applicable
-- **Output** attendu
+{Informations specifiques au projet que l'agent doit connaitre}
 
-### Generation des Skills
+## Quand m'utiliser
 
-Chaque skill DOIT avoir:
-- **SKILL.md** avec frontmatter (name, description)
-- **Patterns** et examples de code specifiques a l'integration
-- **Do's and Don'ts**
-- **Reference** rapide
+{Liste des situations ou cet agent est pertinent}
+
+## Comment je travaille
+
+{Workflow detaille, etape par etape}
+
+## Mon output
+
+{Format de sortie attendu, exemples si utile}
+```
+
+### Format des commandes
+
+```markdown
+# /{nom} - {description courte}
+
+## Usage
+
+- `/{nom}` - {usage de base}
+- `/{nom} {args}` - {variantes}
+
+## Ce que ca fait
+
+{Description detaillee}
+
+## Workflow
+
+1. {etape 1}
+2. {etape 2}
+...
+
+## Output
+
+{Ce que l'utilisateur voit}
+```
+
+### Format des skills
+
+```markdown
+---
+name: {nom}
+description: {description pour le chargement automatique}
+---
+
+# {Nom du Skill}
+
+{Introduction}
+
+## Patterns
+
+{Patterns specifiques au projet, avec exemples de code si pertinent}
+
+## Do's and Don'ts
+
+### Do
+- {bonne pratique}
+
+### Don't
+- {anti-pattern}
+
+## Reference rapide
+
+{Cheatsheet, commandes, snippets utiles}
+```
+
+### Model routing
+
+- **opus**: Pour les decisions importantes, l'architecture, la securite, les reviews critiques
+- **sonnet**: Pour la plupart des taches - execution, analyse, generation
+- **haiku**: Pour les taches simples, rapides, repetitives
 
 ---
 
-## ETAPE 6: Finalisation
+## ETAPE 5: Finaliser
 
-Affiche le resume final avec:
-- Liste complete des fichiers generes
+Affiche:
+- Liste des fichiers generes
 - Commande pour copier dans le projet
-- Liste des commandes disponibles
+- Apercu des commandes disponibles
 - Conseils pour demarrer
 
 ---
 
-## REGLES CRITIQUES
+## EXEMPLES (pour illustrer le niveau de qualite, PAS pour copier)
 
-1. **GENERE BEAUCOUP** - Un SaaS complet = 8-12 agents, 10-15 commandes, 3-5 skills minimum
+### Exemple 1: Projet SaaS TypeScript
 
-2. **CONTENU SPECIFIQUE** - Chaque fichier adapte au projet. Les checklists mentionnent les technos exactes.
+Pour un SaaS de gestion de projets en Next.js + Supabase + Stripe:
 
-3. **DESCRIPTIONS RICHES** - 50-100 mots pour que le routing automatique fonctionne
+**Agents possibles** (inventes pour ce contexte):
+- `project-guardian` - veille sur l'architecture et la coherence du code
+- `data-sentinel` - expert Supabase, RLS, queries optimisees
+- `payment-watcher` - tout ce qui touche Stripe, webhooks, subscriptions
+- `ui-crafter` - composants React, styling, UX
+- `test-pilot` - tests, coverage, CI
+- `security-auditor` - vulnerabilites, auth, secrets
+- `deploy-chief` - deployments, env vars, monitoring
 
-4. **MODEL ROUTING**:
-   - `opus`: project-architect, senior-reviewer, security-expert
-   - `sonnet`: La plupart des agents
-   - `haiku`: a11y-checker, comment-writer, taches simples
+**Commandes possibles**:
+- `/check` - verification rapide du code modifie
+- `/fix` - analyser et corriger un bug
+- `/ship` - checklist pre-deploy complete
+- `/perf` - analyse de performance
 
-5. **TOOLS EXPLICITES** - Chaque agent a sa liste de tools, pas "all"
+### Exemple 2: Projet de contenu/blog
 
-6. **SKILLS UTILES** - Les skills contiennent des patterns concrets, pas de la doc generique
+Pour un blog avec beaucoup de contenu a gerer:
+
+**Agents possibles**:
+- `content-strategist` - planning editorial, idees, angles
+- `draft-reviewer` - relecture, structure, clarte
+- `seo-optimizer` - mots-cles, meta, structure
+- `fact-checker` - verification des sources et donnees
+- `image-curator` - selection et optimisation des visuels
+
+**Commandes possibles**:
+- `/outline {sujet}` - generer un plan d'article
+- `/review` - relecture complete
+- `/seo {url}` - audit SEO d'une page
+- `/publish` - checklist pre-publication
+
+### Exemple 3: Projet e-commerce (non-dev, gestion)
+
+Pour quelqu'un qui gere un e-commerce sans coder:
+
+**Agents possibles**:
+- `inventory-analyst` - suivi stock, alertes, previsions
+- `pricing-strategist` - analyse prix, concurrence, marges
+- `customer-helper` - templates reponses, FAQ, support
+- `promo-planner` - calendrier promos, idees campagnes
+
+**Commandes possibles**:
+- `/stock` - etat des stocks
+- `/price-check {produit}` - analyse prix vs concurrence
+- `/respond {type}` - generer une reponse client
+- `/promo` - idees de promotions
+
+---
+
+## REGLES ABSOLUES
+
+1. **INVENTE TOUT** - Ne copie pas les exemples. Cree des agents/commandes adaptes au projet specifique.
+
+2. **NOMS SIGNIFICATIFS** - Les noms doivent avoir du sens dans le contexte du projet. Pas de noms generiques.
+
+3. **DESCRIPTIONS RICHES** - 50-100 mots minimum pour les descriptions d'agents. C'est critique pour le routing.
+
+4. **SPECIALISATION** - Plusieurs agents specialises > un agent generique. Chaque agent a un domaine precis.
+
+5. **ADAPTE-TOI** - Projet dev? Projet creatif? Projet business? Adapte ton vocabulaire et tes propositions.
+
+6. **QUALITE > QUANTITE** - Ne genere pas 20 agents si 5 suffisent. Ne genere pas 5 si 15 sont necessaires.
+
+7. **CONTENU SPECIFIQUE** - Chaque fichier genere doit contenir des informations specifiques au projet, pas du texte generique.
