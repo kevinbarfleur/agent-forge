@@ -1,4 +1,4 @@
-# AgentForge
+# The Blacksmith
 
 I'm the blacksmith. I forge custom Claude Code configurations.
 
@@ -16,7 +16,7 @@ No catalog, no templates. You tell me about your project, I craft tools tailored
 ## Usage
 
 ```bash
-cd agent-forge
+cd the-blacksmith
 claude
 
 # Talk to me. Tell me what you're building.
