@@ -1,91 +1,86 @@
 # AgentForge
 
-Custom Claude Code configuration generator.
+I'm the blacksmith. I forge custom Claude Code configurations.
+
+No catalog, no templates. You tell me about your project, I craft tools tailored to your needs. Agents, commands, skills - everything custom-made.
 
 ## How it works
 
-1. Open Claude Code in this repo
-2. Talk about your project (free brainstorming)
-3. When ready, run `/forge-init`
-4. A config is generated in `forged/{date}-{slug}/.claude/`
-5. Copy that folder to your project
+1. Come to my forge (open Claude Code in this repo)
+2. Tell me about your project - and spare me the marketing pitch
+3. I'll ask questions. Some might sting. That's how good tools are made.
+4. When you're ready, say `/forge-init`
+5. I forge your config in `forged/{date}-{slug}/.claude/`
+6. Copy it to your project. Done.
 
 ## Usage
 
 ```bash
-# Open Claude Code in this repo
 cd agent-forge
 claude
 
-# Talk about your project...
-# "I want to build a billing SaaS for freelancers"
-# "It's Next.js with Supabase and Stripe"
-# etc.
+# Talk to me. Tell me what you're building.
+# I'll dig into what you actually need.
 
-# When you're ready
+# When ready:
 /forge-init
 ```
 
-## The flow
+## The process
 
-### 1. Brainstorming (default)
+### 1. We talk
 
-When you arrive, Claude starts a conversation. No robotic questionnaire.
+You arrive, I start asking questions. No forms, no checkboxes.
 
 - You explain your project
-- Claude asks questions, challenges your ideas
-- You discuss freely
+- I challenge what sounds shaky
+- We figure out what you actually need
 
-### 2. Generation (/forge-init)
+### 2. I forge
 
-When ready, run `/forge-init`. Claude generates a complete config based on the entire exchange.
+When you're ready, `/forge-init`. I craft a complete config based on everything we discussed.
 
-## Output
+## What you get
 
 ```
 forged/
-├── 2025-01-13-my-saas/
+├── 2025-01-18-your-project/
 │   └── .claude/
-│       ├── CLAUDE.md
-│       ├── agents/
-│       │   ├── payment-guardian.md
-│       │   └── data-architect.md
-│       ├── commands/
-│       │   ├── deploy.md
-│       │   └── fix.md
-│       ├── skills/
-│       │   └── stripe-patterns/
-│       └── rules/
-│           └── security.md
-├── 2025-01-14-cli-tool/
-│   └── .claude/
-│       └── ...
+│       ├── CLAUDE.md          # Your project's brain
+│       ├── agents/            # Specialized workers
+│       ├── commands/          # Your shortcuts
+│       ├── skills/            # Patterns & knowledge
+│       └── rules/             # Guardrails
 ```
 
-## Using a generated config
+## Using your config
 
 ```bash
 # Copy to your project
-cp -r forged/2025-01-13-my-saas/.claude/ /path/to/your/project/
+cp -r forged/2025-01-18-your-project/.claude/ /path/to/your/project/
 
-# Run Claude Code in your project
+# Open Claude Code there
 cd /path/to/your/project
 claude
 
-# Your commands are available
-/deploy
-/fix
+# Your custom commands are ready
 ```
 
-## What gets generated
+## What I forge
 
-Files are NOT templates. Claude invents everything specifically for your project:
+Everything is invented for YOUR project. Not templates. Not copy-paste.
 
-- **Agents** with roles tailored to your needs
-- **Commands** for your daily workflows
-- **Skills** with your project's patterns
+- **Agents** with roles that match your workflows
+- **Commands** for what you do every day
+- **Skills** with your patterns and conventions
 - **Rules** based on your constraints
 
-## License
+## One more thing
+
+I know Claude Code inside out - hooks, MCP servers, sub-agents, the works. So the configs I forge aren't just pretty text. They're architecturally sound.
+
+Now. What are you building?
+
+---
 
 MIT - Kevin Barfleur
