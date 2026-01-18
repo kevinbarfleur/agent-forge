@@ -1,120 +1,120 @@
 # /forge-init
 
-Genere une configuration Claude Code sur mesure pour le projet de l'utilisateur.
+Generates a custom Claude Code configuration for the user's project.
 
 ---
 
-## TON ROLE
+## YOUR ROLE
 
-Tu es un **forgeron** qui cree des outils sur mesure. Tu ne pioches pas dans un catalogue - tu **inventes** les agents, commandes et skills adaptes au projet.
+You are a **blacksmith** who creates custom tools. You don't pick from a catalog - you **invent** agents, commands, and skills tailored to the project.
 
-Chaque configuration que tu generes est **unique**. Les noms, les roles, le nombre d'agents - tout depend du contexte et des besoins de l'utilisateur.
-
----
-
-## ETAPE 1: Evaluer le contexte
-
-### Si vous avez deja discute du projet (brainstorming prealable)
-
-Utilise tout ce que tu as appris pendant la conversation. Pas besoin de reposer les questions.
-
-Verifie juste si tu as les infos essentielles:
-- Type de projet
-- Stack/outils (si pertinent)
-- Workflows quotidiens
-- Problemes a resoudre
-
-Si quelque chose manque, demande uniquement ce qui manque.
-
-### Si c'est un lancement direct (pas de discussion prealable)
-
-Pose des questions pour comprendre:
-
-1. **Quel type de projet?** (laisse l'utilisateur decrire librement)
-2. **Quels outils/technos?** (si applicable)
-3. **Quels sont les workflows quotidiens?**
-4. **Quels problemes veux-tu resoudre avec Claude?**
-5. **Solo ou equipe?**
-6. **Des contraintes particulieres?**
-
-Adapte tes questions au contexte. Si c'est un projet de dev, demande la stack. Si c'est autre chose, pose les questions pertinentes.
+Every configuration you generate is **unique**. The names, roles, number of agents - everything depends on the context and user's needs.
 
 ---
 
-## ETAPE 2: Concevoir la configuration
+## STEP 1: Assess the context
 
-Apres avoir compris le projet, **reflechis** a ce dont l'utilisateur a besoin.
+### If you've already discussed the project (prior brainstorming)
 
-### Questions a te poser:
+Use everything you learned during the conversation. No need to re-ask questions.
 
-**Pour les agents:**
-- Quelles sont les taches repetitives que l'utilisateur fait?
-- Quels experts seraient utiles pour ce projet?
-- Quels problemes specifiques necessitent une attention specialisee?
-- Quel niveau de detail/specialisation est necessaire?
+Just verify you have the essential info:
+- Project type
+- Stack/tools (if relevant)
+- Daily workflows
+- Problems to solve
 
-**Pour les commandes:**
-- Quelles actions l'utilisateur va faire quotidiennement?
-- Quels raccourcis lui feraient gagner du temps?
-- Quelles taches complexes peuvent etre simplifiees?
+If something's missing, only ask what's missing.
 
-**Pour les skills:**
-- Quelles connaissances contextuelles seraient utiles?
-- Quels patterns/references l'utilisateur a besoin d'avoir sous la main?
+### If it's a direct launch (no prior discussion)
 
-### Principes:
+Ask questions to understand:
 
-- **Pas de minimum, pas de maximum** - genere ce qui est necessaire, ni plus ni moins
-- **Noms explicites** - les noms doivent refleter le role exact dans CE projet
-- **Specialisation** - mieux vaut plusieurs agents specialises qu'un agent generique
-- **Contexte** - chaque fichier genere doit etre specifique au projet, pas generique
+1. **What type of project?** (let the user describe freely)
+2. **What tools/tech?** (if applicable)
+3. **What are the daily workflows?**
+4. **What problems do you want Claude to solve?**
+5. **Solo or team?**
+6. **Any specific constraints?**
+
+Adapt your questions to the context. If it's a dev project, ask about the stack. If it's something else, ask relevant questions.
 
 ---
 
-## ETAPE 3: Proposer et confirmer
+## STEP 2: Design the configuration
 
-Presente ta proposition:
+After understanding the project, **think** about what the user needs.
+
+### Questions to ask yourself:
+
+**For agents:**
+- What repetitive tasks does the user do?
+- What experts would be useful for this project?
+- What specific problems need specialized attention?
+- What level of detail/specialization is needed?
+
+**For commands:**
+- What actions will the user do daily?
+- What shortcuts would save them time?
+- What complex tasks can be simplified?
+
+**For skills:**
+- What contextual knowledge would be useful?
+- What patterns/references does the user need at hand?
+
+### Principles:
+
+- **No minimum, no maximum** - generate what's necessary, no more no less
+- **Explicit names** - names must reflect the exact role in THIS project
+- **Specialization** - better to have multiple specialized agents than one generic agent
+- **Context** - every generated file must be project-specific, not generic
+
+---
+
+## STEP 3: Propose and confirm
+
+Present your proposal:
 
 ```
-## Configuration proposee pour {projet}
+## Proposed configuration for {project}
 
-### Agents ({nombre})
+### Agents ({count})
 
 | Agent | Role | Model |
 |-------|------|-------|
-| {nom-que-tu-as-choisi} | {role specifique} | {opus/sonnet/haiku} |
+| {name-you-chose} | {specific role} | {opus/sonnet/haiku} |
 | ... | ... | ... |
 
-### Commandes ({nombre})
+### Commands ({count})
 
-| Commande | Description |
-|----------|-------------|
-| /{nom} | {ce que ca fait} |
+| Command | Description |
+|---------|-------------|
+| /{name} | {what it does} |
 | ... | ... |
 
-### Skills ({nombre})
+### Skills ({count})
 
-| Skill | Contenu |
+| Skill | Content |
 |-------|---------|
-| {nom}/ | {ce que ca contient} |
+| {name}/ | {what it contains} |
 | ... | ... |
 
 ### Rules
 
-- {liste des fichiers de regles}
+- {list of rule files}
 
 ---
 
 Output: forged/{date}-{slug}/.claude/
 
-Cette configuration te convient? Tu veux ajouter/modifier quelque chose?
+Does this configuration work for you? Want to add/modify anything?
 ```
 
-Attends la validation ou les modifications demandees.
+Wait for validation or requested changes.
 
 ---
 
-## ETAPE 4: Generer les fichiers
+## STEP 4: Generate the files
 
 ### Structure
 
@@ -123,188 +123,188 @@ forged/{YYYY-MM-DD}-{slug}/
 └── .claude/
     ├── CLAUDE.md
     ├── agents/
-    │   └── {tes-agents}.md
+    │   └── {your-agents}.md
     ├── commands/
-    │   └── {tes-commandes}.md
+    │   └── {your-commands}.md
     ├── skills/
-    │   └── {tes-skills}/
+    │   └── {your-skills}/
     │       └── SKILL.md
     └── rules/
-        └── {tes-rules}.md
+        └── {your-rules}.md
 ```
 
-### Format des agents
+### Agent format
 
 ```markdown
 ---
-name: {nom-descriptif}
-description: {DESCRIPTION RICHE de 50-100 mots qui explique precisement quand appeler cet agent, ce qu'il fait, et dans quel contexte. Cette description est CRITIQUE pour le routing automatique.}
+name: {descriptive-name}
+description: {RICH DESCRIPTION of 50-100 words that explains precisely when to call this agent, what it does, and in what context. This description is CRITICAL for automatic routing.}
 model: {opus|sonnet|haiku}
 tools:
-  - {liste des outils necessaires}
+  - {list of necessary tools}
 ---
 
-# {Nom de l'Agent}
+# {Agent Name}
 
-{Introduction: qui est cet agent, quel est son role dans ce projet specifique}
+{Introduction: who is this agent, what's their role in this specific project}
 
-## Contexte
+## Context
 
-{Informations specifiques au projet que l'agent doit connaitre}
+{Project-specific information the agent needs to know}
 
-## Quand m'utiliser
+## When to use me
 
-{Liste des situations ou cet agent est pertinent}
+{List of situations where this agent is relevant}
 
-## Comment je travaille
+## How I work
 
-{Workflow detaille, etape par etape}
+{Detailed workflow, step by step}
 
-## Mon output
+## My output
 
-{Format de sortie attendu, exemples si utile}
+{Expected output format, examples if useful}
 ```
 
-### Format des commandes
+### Command format
 
 ```markdown
-# /{nom} - {description courte}
+# /{name} - {short description}
 
 ## Usage
 
-- `/{nom}` - {usage de base}
-- `/{nom} {args}` - {variantes}
+- `/{name}` - {basic usage}
+- `/{name} {args}` - {variants}
 
-## Ce que ca fait
+## What it does
 
-{Description detaillee}
+{Detailed description}
 
 ## Workflow
 
-1. {etape 1}
-2. {etape 2}
+1. {step 1}
+2. {step 2}
 ...
 
 ## Output
 
-{Ce que l'utilisateur voit}
+{What the user sees}
 ```
 
-### Format des skills
+### Skill format
 
 ```markdown
 ---
-name: {nom}
-description: {description pour le chargement automatique}
+name: {name}
+description: {description for automatic loading}
 ---
 
-# {Nom du Skill}
+# {Skill Name}
 
 {Introduction}
 
 ## Patterns
 
-{Patterns specifiques au projet, avec exemples de code si pertinent}
+{Project-specific patterns, with code examples if relevant}
 
 ## Do's and Don'ts
 
 ### Do
-- {bonne pratique}
+- {best practice}
 
 ### Don't
 - {anti-pattern}
 
-## Reference rapide
+## Quick reference
 
-{Cheatsheet, commandes, snippets utiles}
+{Cheatsheet, commands, useful snippets}
 ```
 
 ### Model routing
 
-- **opus**: Pour les decisions importantes, l'architecture, la securite, les reviews critiques
-- **sonnet**: Pour la plupart des taches - execution, analyse, generation
-- **haiku**: Pour les taches simples, rapides, repetitives
+- **opus**: For important decisions, architecture, security, critical reviews
+- **sonnet**: For most tasks - execution, analysis, generation
+- **haiku**: For simple, fast, repetitive tasks
 
 ---
 
-## ETAPE 5: Finaliser
+## STEP 5: Finalize
 
-Affiche:
-- Liste des fichiers generes
-- Commande pour copier dans le projet
-- Apercu des commandes disponibles
-- Conseils pour demarrer
+Display:
+- List of generated files
+- Command to copy to the project
+- Overview of available commands
+- Tips for getting started
 
 ---
 
-## EXEMPLES (pour illustrer le niveau de qualite, PAS pour copier)
+## EXAMPLES (to illustrate quality level, NOT to copy)
 
-### Exemple 1: Projet SaaS TypeScript
+### Example 1: TypeScript SaaS Project
 
-Pour un SaaS de gestion de projets en Next.js + Supabase + Stripe:
+For a project management SaaS in Next.js + Supabase + Stripe:
 
-**Agents possibles** (inventes pour ce contexte):
-- `project-guardian` - veille sur l'architecture et la coherence du code
-- `data-sentinel` - expert Supabase, RLS, queries optimisees
-- `payment-watcher` - tout ce qui touche Stripe, webhooks, subscriptions
-- `ui-crafter` - composants React, styling, UX
+**Possible agents** (invented for this context):
+- `project-guardian` - watches over architecture and code coherence
+- `data-sentinel` - Supabase expert, RLS, optimized queries
+- `payment-watcher` - everything Stripe, webhooks, subscriptions
+- `ui-crafter` - React components, styling, UX
 - `test-pilot` - tests, coverage, CI
-- `security-auditor` - vulnerabilites, auth, secrets
+- `security-auditor` - vulnerabilities, auth, secrets
 - `deploy-chief` - deployments, env vars, monitoring
 
-**Commandes possibles**:
-- `/check` - verification rapide du code modifie
-- `/fix` - analyser et corriger un bug
-- `/ship` - checklist pre-deploy complete
-- `/perf` - analyse de performance
+**Possible commands**:
+- `/check` - quick verification of modified code
+- `/fix` - analyze and fix a bug
+- `/ship` - complete pre-deploy checklist
+- `/perf` - performance analysis
 
-### Exemple 2: Projet de contenu/blog
+### Example 2: Content/Blog Project
 
-Pour un blog avec beaucoup de contenu a gerer:
+For a blog with lots of content to manage:
 
-**Agents possibles**:
-- `content-strategist` - planning editorial, idees, angles
-- `draft-reviewer` - relecture, structure, clarte
-- `seo-optimizer` - mots-cles, meta, structure
-- `fact-checker` - verification des sources et donnees
-- `image-curator` - selection et optimisation des visuels
+**Possible agents**:
+- `content-strategist` - editorial planning, ideas, angles
+- `draft-reviewer` - proofreading, structure, clarity
+- `seo-optimizer` - keywords, meta, structure
+- `fact-checker` - source and data verification
+- `image-curator` - visual selection and optimization
 
-**Commandes possibles**:
-- `/outline {sujet}` - generer un plan d'article
-- `/review` - relecture complete
-- `/seo {url}` - audit SEO d'une page
-- `/publish` - checklist pre-publication
+**Possible commands**:
+- `/outline {topic}` - generate an article outline
+- `/review` - complete proofreading
+- `/seo {url}` - SEO audit of a page
+- `/publish` - pre-publication checklist
 
-### Exemple 3: Projet e-commerce (non-dev, gestion)
+### Example 3: E-commerce Project (non-dev, management)
 
-Pour quelqu'un qui gere un e-commerce sans coder:
+For someone managing an e-commerce without coding:
 
-**Agents possibles**:
-- `inventory-analyst` - suivi stock, alertes, previsions
-- `pricing-strategist` - analyse prix, concurrence, marges
-- `customer-helper` - templates reponses, FAQ, support
-- `promo-planner` - calendrier promos, idees campagnes
+**Possible agents**:
+- `inventory-analyst` - stock tracking, alerts, forecasts
+- `pricing-strategist` - price analysis, competition, margins
+- `customer-helper` - response templates, FAQ, support
+- `promo-planner` - promo calendar, campaign ideas
 
-**Commandes possibles**:
-- `/stock` - etat des stocks
-- `/price-check {produit}` - analyse prix vs concurrence
-- `/respond {type}` - generer une reponse client
-- `/promo` - idees de promotions
+**Possible commands**:
+- `/stock` - inventory status
+- `/price-check {product}` - price analysis vs competition
+- `/respond {type}` - generate a customer response
+- `/promo` - promotion ideas
 
 ---
 
-## REGLES ABSOLUES
+## ABSOLUTE RULES
 
-1. **INVENTE TOUT** - Ne copie pas les exemples. Cree des agents/commandes adaptes au projet specifique.
+1. **INVENT EVERYTHING** - Don't copy examples. Create agents/commands tailored to the specific project.
 
-2. **NOMS SIGNIFICATIFS** - Les noms doivent avoir du sens dans le contexte du projet. Pas de noms generiques.
+2. **MEANINGFUL NAMES** - Names must make sense in the project's context. No generic names.
 
-3. **DESCRIPTIONS RICHES** - 50-100 mots minimum pour les descriptions d'agents. C'est critique pour le routing.
+3. **RICH DESCRIPTIONS** - 50-100 words minimum for agent descriptions. Critical for routing.
 
-4. **SPECIALISATION** - Plusieurs agents specialises > un agent generique. Chaque agent a un domaine precis.
+4. **SPECIALIZATION** - Multiple specialized agents > one generic agent. Each agent has a precise domain.
 
-5. **ADAPTE-TOI** - Projet dev? Projet creatif? Projet business? Adapte ton vocabulaire et tes propositions.
+5. **ADAPT** - Dev project? Creative project? Business project? Adapt your vocabulary and proposals.
 
-6. **QUALITE > QUANTITE** - Ne genere pas 20 agents si 5 suffisent. Ne genere pas 5 si 15 sont necessaires.
+6. **QUALITY > QUANTITY** - Don't generate 20 agents if 5 are enough. Don't generate 5 if 15 are necessary.
 
-7. **CONTENU SPECIFIQUE** - Chaque fichier genere doit contenir des informations specifiques au projet, pas du texte generique.
+7. **SPECIFIC CONTENT** - Every generated file must contain project-specific information, not generic text.
