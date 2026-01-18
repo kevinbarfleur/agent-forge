@@ -1,50 +1,50 @@
 # AgentForge
 
-Generateur de configurations Claude Code sur mesure.
+Custom Claude Code configuration generator.
 
-## Comment ca marche
+## How it works
 
-1. Ouvre Claude Code dans ce repo
-2. Parle de ton projet (brainstorming libre)
-3. Quand tu es pret, lance `/forge-init`
-4. Une config est generee dans `forged/{date}-{slug}/.claude/`
-5. Copie ce dossier dans ton projet
+1. Open Claude Code in this repo
+2. Talk about your project (free brainstorming)
+3. When ready, run `/forge-init`
+4. A config is generated in `forged/{date}-{slug}/.claude/`
+5. Copy that folder to your project
 
 ## Usage
 
 ```bash
-# Ouvre Claude Code dans ce repo
+# Open Claude Code in this repo
 cd agent-forge
 claude
 
-# Parle de ton projet...
-# "Je veux creer un SaaS de facturation pour freelances"
-# "C'est du Next.js avec Supabase et Stripe"
+# Talk about your project...
+# "I want to build a billing SaaS for freelancers"
+# "It's Next.js with Supabase and Stripe"
 # etc.
 
-# Quand tu es pret
+# When you're ready
 /forge-init
 ```
 
-## Le flow
+## The flow
 
-### 1. Brainstorming (par defaut)
+### 1. Brainstorming (default)
 
-Quand tu arrives, Claude engage la conversation. Pas de questionnaire robotique.
+When you arrive, Claude starts a conversation. No robotic questionnaire.
 
-- Tu expliques ton projet
-- Claude pose des questions, challenge tes idees
-- Vous discutez librement
+- You explain your project
+- Claude asks questions, challenges your ideas
+- You discuss freely
 
 ### 2. Generation (/forge-init)
 
-Quand tu es pret, tu lances `/forge-init`. Claude genere une config complete basee sur tout l'echange.
+When ready, run `/forge-init`. Claude generates a complete config based on the entire exchange.
 
 ## Output
 
 ```
 forged/
-├── 2025-01-13-mon-saas/
+├── 2025-01-13-my-saas/
 │   └── .claude/
 │       ├── CLAUDE.md
 │       ├── agents/
@@ -62,29 +62,29 @@ forged/
 │       └── ...
 ```
 
-## Utiliser une config generee
+## Using a generated config
 
 ```bash
-# Copie dans ton projet
-cp -r forged/2025-01-13-mon-saas/.claude/ /chemin/vers/ton/projet/
+# Copy to your project
+cp -r forged/2025-01-13-my-saas/.claude/ /path/to/your/project/
 
-# Lance Claude Code dans ton projet
-cd /chemin/vers/ton/projet
+# Run Claude Code in your project
+cd /path/to/your/project
 claude
 
-# Tes commandes sont disponibles
+# Your commands are available
 /deploy
 /fix
 ```
 
-## Ce qui est genere
+## What gets generated
 
-Les fichiers ne sont PAS des templates. Claude invente tout specifiquement pour ton projet:
+Files are NOT templates. Claude invents everything specifically for your project:
 
-- **Agents** avec des roles adaptes a tes besoins
-- **Commandes** pour tes workflows quotidiens
-- **Skills** avec les patterns de ton projet
-- **Rules** basees sur tes contraintes
+- **Agents** with roles tailored to your needs
+- **Commands** for your daily workflows
+- **Skills** with your project's patterns
+- **Rules** based on your constraints
 
 ## License
 
